@@ -1,12 +1,9 @@
-export function getPostsComments(req, res) {
-  res.json([true]);
-}
-export function getPostComments(req, res) {
-  res.json([true]);
-}
+import Comment from '../models/comment';
 
 export function addComment(req, res) {
-  res.json([true]);
+  Comment.findAll().exec((err, comments) => {
+    res.json(comments);
+  });
 }
 export function editComment(req, res) {
   res.json([true]);

@@ -1,4 +1,5 @@
 import callApi from '../../util/apiCaller';
+import { addComments } from '../Comment/CommentActions';
 
 // Export Constants
 export const ADD_POST = 'ADD_POST';
@@ -36,13 +37,17 @@ export function fetchPosts() {
   return (dispatch) => {
     return callApi('posts').then(res => {
       dispatch(addPosts(res.posts));
+      dispatch(addComments(res.posts.map(post => post.comments).flat(1)));
     });
   };
 }
 
 export function fetchPost(cuid) {
   return (dispatch) => {
-    return callApi(`posts/${cuid}`).then(res => dispatch(addPost(res.post)));
+    return callApi(`posts/${cuid}`).then(res => {
+      dispatch(addPost(res.post));
+      dispatch(addComments(res.post.comments), true);
+    });
   };
 }
 

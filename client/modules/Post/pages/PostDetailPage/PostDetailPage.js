@@ -12,6 +12,11 @@ import { fetchPost } from '../../PostActions';
 
 // Import Selectors
 import { getPost } from '../../PostReducer';
+import CommentCreateWidget from '../../../Comment/components/CommentCreateWidget/CommentCreateWidget';
+import CommentList from '../../../Comment/components/CommentList';
+import { postType } from '../../types';
+import { commentType } from '../../../Comment/types';
+import { getPostComments } from '../../../Comment/CommentReducer';
 
 export function PostDetailPage(props) {
   return (
@@ -22,6 +27,8 @@ export function PostDetailPage(props) {
         <p className={styles['author-name']}><FormattedMessage id="by" /> {props.post.name}</p>
         <p className={styles['post-desc']}>{props.post.content}</p>
       </div>
+      <CommentList comments={props.comments} />
+      <CommentCreateWidget cuid={props.post.cuid} />
     </div>
   );
 }
@@ -33,19 +40,16 @@ PostDetailPage.need = [params => {
 
 // Retrieve data from store as props
 function mapStateToProps(state, props) {
+  const post = getPost(state, props.params.cuid);
   return {
-    post: getPost(state, props.params.cuid),
+    post,
+    comments: getPostComments(state, post),
   };
 }
 
 PostDetailPage.propTypes = {
-  post: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    cuid: PropTypes.string.isRequired,
-  }).isRequired,
+  post: postType.isRequired,
+  comments: PropTypes.arrayOf(commentType).isRequired,
 };
 
 export default connect(mapStateToProps)(PostDetailPage);

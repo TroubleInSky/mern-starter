@@ -13,6 +13,7 @@ import { toggleAddPost } from '../../../App/AppActions';
 // Import Selectors
 import { getShowAddPost } from '../../../App/AppReducer';
 import { getPosts } from '../../PostReducer';
+import { postType } from '../../types';
 
 class PostListPage extends Component {
   componentDidMount() {
@@ -52,11 +53,7 @@ function mapStateToProps(state) {
 }
 
 PostListPage.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-  })).isRequired,
+  posts: PropTypes.arrayOf(postType).isRequired,
   showAddPost: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
