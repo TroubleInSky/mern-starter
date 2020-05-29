@@ -5,13 +5,19 @@ import PropTypes from 'prop-types';
 import { commentType } from '../types';
 
 
-export default function CommentsList({ comments }) {
+export default function CommentsList({ comments, update, remove }) {
+
+
+
   return (
     <div>
-    {comments.map(comment => (
-      <CommentItem
+      <h2>Comments</h2>
+    {comments.map((comment, i) => (
+      <CommentItem key={i}
         author={comment.author}
         text={comment.text}
+        update={() => {update(comment._id)}}
+        remove={() => {remove(comment._id)}}
       />
     ))}
     </div>
@@ -19,4 +25,6 @@ export default function CommentsList({ comments }) {
 }
 CommentsList.propTypes = {
   comments: PropTypes.arrayOf(commentType).isRequired,
+  update: PropTypes.func.isRequired,
+  remove: PropTypes.func.isRequired,
 };

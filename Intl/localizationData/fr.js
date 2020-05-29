@@ -6,6 +6,7 @@ export default {
     yourName: 'Your name FR',
     yourText: 'Your text FR',
     addComment: 'Ajouter Comment',
+    editComment: 'Edit Comment FR',
     switchLanguage: 'Changer de langue',
     twitterMessage: 'Nous sommes sur Twitter',
     by: 'Par',
@@ -30,5 +31,8 @@ export default {
   		  =1 {has # comment}
   		  other {has # comments}
   		} as of {date} (in real app this would be translated to French)`,
+    authorError: 'author error FR',
+    textError: 'text error FR',
   },
+
 };

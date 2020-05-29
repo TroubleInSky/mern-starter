@@ -12,6 +12,7 @@ import sanitizeHtml from 'sanitize-html';
 export function getPosts(req, res) {
   Post.find().sort('-dateAdded').populate('comments')
     .exec((err, posts) => {
+      console.log(posts);
       if (err) {
         res.status(500).send(err);
       } else {
@@ -55,7 +56,7 @@ export function addPost(req, res) {
  * @returns void
  */
 export function getPost(req, res) {
-  Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
+  Post.findOne({ cuid: req.params.cuid }).populate('comments').exec((err, post) => {
     if (err) {
       res.status(500).send(err);
     }

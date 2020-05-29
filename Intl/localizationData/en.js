@@ -4,6 +4,7 @@ export default {
     siteTitle: 'MERN Starter Blog',
     addPost: 'Add Post',
     addComment: 'Add Comment',
+    editComment: 'Edit Comment',
     yourName: 'Your name',
     yourText: 'Your text',
     switchLanguage: 'Switch Language',
@@ -30,5 +31,8 @@ export default {
     	  =1 {has # comment}
     	  other {has # comments}
     	} as of {date}`,
+    authorError: 'author error EN',
+    textError: 'text error EN',
   },
+
 };

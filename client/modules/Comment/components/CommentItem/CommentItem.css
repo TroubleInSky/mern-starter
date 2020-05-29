@@ -1,0 +1,28 @@
+.comment {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.author {
+    color:#757575;
+    font-size: 18px;
+}
+
+.text {
+    padding: 10px 0 ;
+}
+.actions {
+    float:right;
+}
+.actions a {
+    display: inline-block;
+    padding: 5px 0 5px 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.action-update:hover {
+    color:forestgreen;
+}
+.action-remove:hover {
+    color:red;
+}
