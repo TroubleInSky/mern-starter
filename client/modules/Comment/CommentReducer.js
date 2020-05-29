@@ -27,16 +27,14 @@ const CommentReducer = (state = initialState, action) => {
       return { data };
 
     case EDIT_COMMENT : {
-      const i = state.data.findIndex(comment => comment._id === action.comment._id);
+      const i = data.findIndex(comment => comment._id === action.comment._id);
 
       if (i) {
-        state.data[i] = action.comment;
+        data[i] = action.comment;
       } else {
-        state.data.push(action.comment);
+        data.push(action.comment);
       }
-      return {
-        data: state.data,
-      };
+      return { data };
     }
     case DELETE_COMMENT :
       return {

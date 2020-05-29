@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
@@ -23,49 +23,44 @@ import {
 
 class PostDetailPage extends Component {
 
-
-
   constructor(props) {
     super(props);
     this.state = {
-      commentEdit: null
+      commentEdit: null,
     };
     this.commentUpdateHandler = this.commentUpdateHandler.bind(this);
     this.commentRemoveHandler = this.commentRemoveHandler.bind(this);
   }
 
   handleRemoveEditing = () => {
-    console.log(1);
-    if (this.state.commentEdit) this.setState({commentEdit: null})
+    if (this.state.commentEdit) this.setState({ commentEdit: null });
   };
 
   commentUpdateHandler(_id) {
-    this.setState({commentEdit: _id});
+    this.setState({ commentEdit: _id });
   }
   commentRemoveHandler(_id) {
     if (confirm('Do you want to delete this comment')) { // eslint-disable-line
-      this.props.dispatch(deleteCommentRequest(_id))
+      this.props.dispatch(deleteCommentRequest(_id));
     }
-
   }
+
   render() {
-    const {props} = this;
-    return (
-        <div>
-          <Helmet title={props.post.title} />
-          <div className={`${styles['single-post']} ${styles['post-detail']}`}>
-            <h3 className={styles['post-title']}>{props.post.title}</h3>
-            <p className={styles['author-name']}><FormattedMessage id="by" /> {props.post.name}</p>
-            <p className={styles['post-desc']}>{props.post.content}</p>
-          </div>
-          <CommentList
-              comments={props.comments}
-              update={this.commentUpdateHandler}
-              remove={this.commentRemoveHandler}
-          />
-          <CommentCreateWidget removeEditing={this.handleRemoveEditing} edit={this.state.commentEdit} id={props.post._id} />
-        </div>
-    );
+    const { props } = this;
+    return (<div>
+      <Helmet title={props.post.title} />
+      <div className={`${styles['single-post']} ${styles['post-detail']}`}>
+        <h3 className={styles['post-title']}>{props.post.title}</h3>
+        <p className={styles['author-name']}><FormattedMessage id="by" /> {props.post.name}</p>
+        <p className={styles['post-desc']}>{props.post.content}</p>
+      </div>
+      <CommentList
+        comments={props.comments}
+        update={this.commentUpdateHandler}
+        remove={this.commentRemoveHandler}
+      />
+      <CommentCreateWidget removeEditing={this.handleRemoveEditing} edit={this.state.commentEdit} id={props.post._id} />
+    </div>);
   }
 }
 
@@ -86,6 +81,7 @@ function mapStateToProps(state, props) {
 PostDetailPage.propTypes = {
   post: postType.isRequired,
   comments: PropTypes.arrayOf(commentType).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(PostDetailPage);

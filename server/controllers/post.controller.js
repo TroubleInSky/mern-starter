@@ -12,7 +12,6 @@ import sanitizeHtml from 'sanitize-html';
 export function getPosts(req, res) {
   Post.find().sort('-dateAdded').populate('comments')
     .exec((err, posts) => {
-      console.log(posts);
       if (err) {
         res.status(500).send(err);
       } else {

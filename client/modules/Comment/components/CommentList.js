@@ -6,18 +6,16 @@ import { commentType } from '../types';
 
 
 export default function CommentsList({ comments, update, remove }) {
-
-
-
   return (
     <div>
       <h2>Comments</h2>
     {comments.map((comment, i) => (
-      <CommentItem key={i}
+      <CommentItem
+        key={i}
         author={comment.author}
         text={comment.text}
-        update={() => {update(comment._id)}}
-        remove={() => {remove(comment._id)}}
+        update={() => { update(comment._id); }}
+        remove={() => { remove(comment._id); }}
       />
     ))}
     </div>

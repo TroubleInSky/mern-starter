@@ -1,5 +1,4 @@
 import callApi from '../../util/apiCaller';
-import { DELETE_POST } from '../Post/PostActions';
 
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const ADD_COMMENTS = 'ADD_COMMENTS';
@@ -27,12 +26,12 @@ export function editComment(comment) {
 }
 export function addCommentRequest(comment) {
   return (dispatch) => {
-    return callApi('comments', 'post', {comment}).then(res => dispatch(addComment(res.comment)));
+    return callApi('comments', 'post', { comment }).then(res => dispatch(addComment(res.comment)));
   };
 }
 export function editCommentRequest(comment) {
   return (dispatch) => {
-    return callApi('comments', 'put', {comment}).then(res => dispatch(editComment(res.comment)));
+    return callApi('comments', 'put', { comment }).then(res => dispatch(editComment(res.comment)));
   };
 }
 export function deleteComment(id) {
